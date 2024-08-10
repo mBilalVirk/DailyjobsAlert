@@ -1,0 +1,91 @@
+<li class="nav-item dropdown ">
+              <?php 
+                if (isset($user_id))
+                  echo "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownMenuLink' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                  Profile
+                </a>
+                
+                <ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+                    <li>
+			                  <div align=><a href='logout.php'class='dropdown-item' >Sign-Out</a></div>
+			              </li>
+               
+                </ul>"
+                ;
+
+                else
+                    echo "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownMenuLink' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                      More
+                          </a>?>
+                    <ul class='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+                    <li>
+                      <div align=><a href='login.php' class='dropdown-item'>Sign-In</a></div>
+                    </li>";
+              ?>
+                  <li><a class="dropdown-item" href="Signup.php">SignUp</a></li>
+                  <li><a class="dropdown-item" href="Dashboard/login.php">Admin Penal</a></li>
+                </ul>
+              </li>
+              
+            </ul>
+          </div>
+        </div>
+        <?php 
+                if (isset($user_id))
+                    echo "<li>
+			  <div  >$user_id</div>
+			</li>";?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<table class="table table-dark table-striped table-responsive-xxl container-fluid" style="width:1080px;">
+   
+					<h1 style="text-align:center;display:block;color:white">Jobs Table</h1>
+					   
+                                <thead >
+					            <th>Sr No</th>
+					            <th>Job ID</th>
+					            <th>Title</th>
+					            <th>Categories</th>
+					            <th>Salary</th>
+					            <th>location</th>
+					            <th>Apply</th>
+					            <th>Details</th>
+					            </thead>
+					          
+					            <tr>
+                                
+                                <?php
+                                    $i=01;
+                                    $sql="SELECT * FROM `jobs`";
+                                    $result= mysqli_query($dbc,$sql);
+                                    while($row=mysqli_fetch_array($result)){
+                                ?>
+					                <td><?php echo $i++?></td>
+					                <td><?php echo $row['ID'];?></td>
+					                <td><?php echo $row['Title'];?></td>
+					                <td><?php echo $row['Categories'];?></td>
+					                <td><?php echo $row['Salery'];?></td>
+					                <td><?php echo $row['Location'];?></td>
+                                    <td><a href="Apply.php?id=<?php echo $row['ID'];?>" class="btn btn-primary btn- " tabindex="-1" role="button">Apply</a></td>
+                                    <td><a href="Details.php?id=<?php echo $row['ID'];?>" class="btn btn-primary btn- " tabindex="-1" role="button" >Details</a></td>
+					                
+					                
+					            </tr>
+					            <?php }?>
+					        
+					   
+</table>-->

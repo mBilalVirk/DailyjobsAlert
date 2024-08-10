@@ -1,0 +1,174 @@
+<?php
+	require("Connection.php");
+	include('valide.php');
+	if(isset($_SESSION['id'])==true)
+        $user_id = $_SESSION['id'];
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Daily job Alert | Apply for job</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+</head>
+
+<body>
+<div class="form-control ">
+	<form method="post" action="#" name="add" onsubmit=" detail();" class="row" enctype="multipart/form-data">
+	<?php
+                             $id=$_REQUEST['id'];
+							 if($id==true){
+                             $sql="SELECT * FROM `jobs` WHERE `ID` = '$id'";
+                             $result= mysqli_query($dbc,$sql);
+                             $row=mysqli_fetch_array($result);
+							 $sq = "SELECT * FROM `account` WHERE `email`='$user_id';";
+							 $rslt= mysqli_query($dbc, $sq);
+                             $rw=mysqli_fetch_array($rslt);}
+                            ?>
+	
+			<div id="head"><center><h1>Application Form</h1></center></div>
+		<table >
+		<tr>
+		<td><font size="2">All information must be Official:</font><br /></td>
+		<td><marquee behavior="alternate"><font size="2" style="font-family:algerian;">Please fill all field given blow. Application is not conform if any field is not complitly filled or any mis inform.</font></marquee></td>
+		</tr>
+			<tr>
+			<td>
+			<span >1. Post Name:</span>
+			</td>
+			<td colspan="2"><input type="text" name="Postname" value="<?php echo $row['Title'];?>" class="form-control" id="inputEmail4"/></td>
+			</tr>
+			<tr>
+			<td><span>2. Reg Number:</span></td>
+			</td>
+			<td colspan="2"><input type="text" name="rgnumber" class="form-control" id="inputEmail4"/></td>
+			</tr>
+			<tr>
+			<td>
+			<span>3. Condidate Name:</span>
+			</td>
+			<td colspan="2"><input type="text" name="Cname" value="<?php echo $rw['fname'];echo"-"; ;echo $rw['lname']?>" class="form-control" id="inputEmail4" /></td>
+			</tr>
+			
+			<tr>
+			<td>
+			<span>5. CNIC :</span>
+			</td>
+			<td colspan="2"><input type="number" name="cnic" placeholder="" id="" class="form-control" id="inputEmail4"/></td>
+			</tr>
+			<tr>
+			<td>
+			<span>6. Father Name:</span>
+			</td>
+			<td colspan="2"><input type="text" name="Fname" class="form-control" id="inputEmail4"/></td>
+			</tr>
+			<tr>
+			<td><span>7. Father CNIC:</span></td>
+			<td colspan="2"><input type="number" name="FCNIC" placeholder="" id=""class="form-control" id="inputEmail4"/></td>
+			</tr>
+			<tr>
+			<td><span>8. Religion:</span></td>
+			<td colspan="2"><input type="text" name="Religion" id="" placeholder="ISLAM" class="form-control" id="inputEmail4"/></td>
+			</tr>
+			<tr>
+			<td><span>9. Nationality:</span></td>
+			<td style="text-align:center;">
+				<select name="Nationality" class="form-select" id="specificSizeSelect">
+					<option value="Pakistan">Pakistan
+					<option value="China">China
+					<option value="Inda">India
+					<option value="Iran">Iran
+				</select>
+			</td>
+			</tr>
+			
+			<tr>
+				<td><span>10. Previus Job id any:</span></td>
+				<td colspan="2"><input type="number" name="Prollno" id="" class="form-control" id="inputEmail4"/></td>
+			</tr>
+			<tr>
+				<td><span>11. Upload CV:</span></td>
+				<td colspan="2" style="text-align:center;"><input type="file" name="CV" class="form-control"/></td>
+			</tr>
+			<tr>
+				<td><span>12. Postal Address:</span></td>
+				<td colspan="2"><input type="text" name="address" class="form-control" id="inputEmail4"/></td>
+			</tr>
+			<tr>
+				<td><span>13. Please tick the relevent:</span></td>
+				<td style="text-align:center;">
+				<span style="font-family:comic sans ms;">Open Merit: </span><input type="radio" name="add" value="fresh"class="form-check-input"/>
+				<span style="font-family:comic sans ms;">Women Quata: </span><input type="radio" name="add" value="Failed"class="form-check-input"/>
+				<span style="font-family:comic sans ms;">Disabled Quata: </span><input type="radio" name="add" value="Additional subject"class="form-check-input"/>
+				<span style="font-family:comic sans ms;">Employees son: </span><input type="radio" name="add" value="Inproved"class="form-check-input"/>
+				</td>
+			</tr>
+			<tr>
+			<td rowspan="7" style="text-align:center"><span>14. Academic Qualification:</span><br><span>Only Obtain marks</span></td>
+			</tr>
+			<tr>
+				<td style="text-align:center"><input type="text" name="SSC" placeholder="SSC" class="form-control" id="inputEmail4"/></td>
+			</tr>
+			<tr>
+				<td style="text-align:center"><input type="text" name="IC" placeholder="Intermediate Certificate" class="form-control" id="inputEmail4"/></td>
+			</tr>
+			<tr>
+				<td style="text-align:center"><input type="text" name="Graduation" placeholder="Graduation" class="form-control" id="inputEmail4"/></td>
+			</tr>
+			<tr>
+				<td style="text-align:center"><input type="text" name="pgrarudation" placeholder="Post Graduation" class="form-control" id="inputEmail4"/></td>
+			</tr>
+			<tr>
+				<td  style="text-align:center"><input type="text" name="Scourse" placeholder="Special Course" class="form-control" id="inputEmail4"/></td>
+			</tr>
+			<tr>
+				<td style="text-align:center"><input type="text" name="other" placeholder="Other" class="form-control" id="inputEmail4"/></td>
+			</tr>
+			<tr>
+				<td style="text-align:center" colspan="2"><input type="submit" value="Application Submit" class="btn btn-primary"/></td>
+			</tr>
+		
+	  </table>
+		
+	</form>
+	<div id="msg" >
+		<?php
+			if(isset($_REQUEST['submit']))
+			{
+				$pname = $_REQUEST['Postname'];
+				$rgnumber = $_REQUEST['rgnumber'];
+				$Cname = $_REQUEST['Cname'];
+				
+				$cnic = $_REQUEST['cnic'];
+				$Fname = $_REQUEST['Fname'];
+				$FCNIC = $_REQUEST['FCNIC'];
+				$Religion = $_REQUEST['Religion'];
+				$Nationality = $_REQUEST['Nationality'];
+				$Prollno = $_REQUEST['Prollno'];
+				$CV = $_REQUEST['CV'];
+				$address = $_REQUEST['address'];
+				$add = $_REQUEST['add'];
+				$Prollno = $_REQUEST['SSC'];
+				$IC = $_REQUEST['IC'];
+				$Graduation = $_REQUEST['Graduation'];
+				$pgrarudation = $_REQUEST['pgrarudation'];
+				$Scourse = $_REQUEST['Scourse'];
+				$other = $_REQUEST['other'];
+				
+				$sql = "INSERT INTO `application`(`Post_Name`, `Reg_number`, `Name`,  `CNIC`, `Father_Namae`, `Father_CNIC`, `Religion`, `Nationality`, `Pjob`, `CV`, `Address`, `Marit`, `SSC`, `Intermediate`, `Graduation`, `Post_graduation`, `Special_course`, `Other`) 
+VALUES ('$pname','$rgnumber','$Cname','$cnic','$Fname','$FCNIC','$Religion','$Nationality','$Prollno','$CV ','$address',
+'$add','$Prollno','$IC ','$Graduation','$pgrarudation','$Scourse','$other');";
+				if($sql)
+				{
+					echo "<script>alert('Application is Submitted..!');</script>";
+				}
+			}
+		?>
+		</div>
+</div>
+</body>
+</html>

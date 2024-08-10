@@ -1,0 +1,63 @@
+<?php
+	require("Connection.php");
+    if(isset($_SESSION['id'])==true)
+        $user_id = $_SESSION['id'];
+
+?>
+<html>
+<head>
+<title>Daily job Alert | Search</title>
+<link href="Style.css" rel="stylesheet" type="text/css" />
+   <meta name="viewport" content="width=device-width", initial-scale=1.0>
+   <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+
+</head>
+<body>
+	<div id="wrapper">
+	<?php include("nav.php") ?>
+	<div id="heading">
+		<!--<img src="img/video-banner-img.png" height="150px" style="float:left;"/>-->
+		
+	</div><!-- end of heading-->
+	<div id="pbody">
+		
+     <div id="jobsside" style="width: 40rem;height: auto;float: left;">
+            <h1 style="color:white;margin-left:35%">Search Jobs</h1>
+            <?php
+                                    if(isset($_POST['submit']))
+                                    {
+                                        $title=$_POST['job_title'];
+												
+												$sal=$_POST['salary'];
+												$loc=$_POST['location'];
+                                    $sql="SELECT * FROM `jobs` WHERE `Title`='$title'||`Salery`='$sal'||`Location`='$loc'";
+                                    $result= mysqli_query($dbc,$sql);
+                                    while($row=mysqli_fetch_array($result)){
+                                ?>
+        <div class="card" style="width: 40rem; margin-buttom:10px; margin-top:10px;box-shadow: 5px 5px 5px 0;background-color:#f1a6a6">
+                <div class="card-body">
+                    <h5 class="card-title">Jobs Name:<?php echo $row['Title'];?></h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Categories: <?php echo $row['Categories'];?></h6>
+                    <p class="card-text"><?php echo $row['Description'];?></p>
+                    <p class="card-text">Location:<?php echo $row['Location'];?></p>
+                    <p class="card-text">Salary:<?php echo $row['Salery'];echo"\t";?>RS a Month</p>
+                    <td><a href="Apply.php?id=<?php echo $row['ID'];?>" class="btn btn-primary btn- " tabindex="-1" role="button">Apply</a></td>
+                    <td><a href="Details.php?id=<?php echo $row['ID'];?>" class="btn btn-primary btn- " tabindex="-1" role="button" >Details</a></td>
+                </div>
+                </div>
+                <?php }}?><!-- end of post -->
+                
+                </div>   
+
+		
+		
+	</div><!-- end of pbody-->
+     <?php include("Footer.php") ?>
+	</div><!-- end of wrapper--><br /><br />
+    
+	
+</body>
+</html>
